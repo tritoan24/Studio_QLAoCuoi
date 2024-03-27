@@ -2,7 +2,7 @@ import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import InputSearch from './InputSearch';
 
-const CustomHeader = ({title, messenger}) => {
+const CustomHeader = ({title, messenger,hint}) => {
   return (
     <SafeAreaView>
       <View
@@ -34,7 +34,7 @@ const CustomHeader = ({title, messenger}) => {
         />
       </View>
       <InputSearch
-        hint={'Tìm kiếm công việc............'}
+        hint={hint}
         icon={require('../assets/image/search.png')}
       />
     </SafeAreaView>
