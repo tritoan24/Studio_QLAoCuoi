@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import InputCustom from '../commponents/InputCustom';
+import { apiLogin } from '../config/UriAPi';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ const Login = ({navigation}) => {
   const [toggole, setToggole] = useState(true);
 
   const login = () => {
-    fetch('http://192.168.1.161:3001/apiUser/login', {
+    fetch(apiLogin, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
