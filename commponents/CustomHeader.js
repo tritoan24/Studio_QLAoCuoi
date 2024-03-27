@@ -21,7 +21,7 @@ const CustomHeader = ({title, messenger, hint}) => {
             style={{
               fontFamily: 'NSRegular',
               bottom: 10,
-              left: 5,
+              left: 8,
               fontSize: 13,
             }}>
             {messenger}
