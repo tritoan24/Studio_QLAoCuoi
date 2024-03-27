@@ -22,7 +22,7 @@ const Login = ({navigation}) => {
   const [toggole, setToggole] = useState(true);
 
   const login = () => {
-    fetch('http://192.168.1.161:3001/apiUser/login', {
+    fetch('http://192.168.0.103:3001/apiUser/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
