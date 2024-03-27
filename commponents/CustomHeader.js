@@ -2,7 +2,7 @@ import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import InputSearch from './InputSearch';
 
-const CustomHeader = ({title, messenger,hint}) => {
+const CustomHeader = ({title, messenger, hint}) => {
   return (
     <SafeAreaView>
       <View
@@ -33,10 +33,9 @@ const CustomHeader = ({title, messenger,hint}) => {
           source={require('../assets/image/logo3.png')}
         />
       </View>
-      <InputSearch
-        hint={hint}
-        icon={require('../assets/image/search.png')}
-      />
+      {hint == null ? null : (
+        <InputSearch hint={hint} icon={require('../assets/image/search.png')} />
+      )}
     </SafeAreaView>
   );
 };
