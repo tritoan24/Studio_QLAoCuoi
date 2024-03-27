@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './navigations/Login';
 import Welcome from './navigations/Welcome';
+import DangKy from './navigations/DangKy';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ const App = () => {
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Main" component={MainNavigation} />
+        <Stack.Screen name="DangKy" component={DangKy}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

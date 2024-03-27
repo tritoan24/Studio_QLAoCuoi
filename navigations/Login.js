@@ -2,6 +2,7 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -12,17 +13,25 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import InputCustom from '../commponents/InputCustom';
+import { useNavigation } from '@react-navigation/native';
 
 const Login = ({navigation}) => {
+  // const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
-  console.log('Login  email:', email);
+  // console.log('Login  email:', email);
   const [password, setPassword] = useState('');
-  console.log('Login  password:', password);
+  // console.log('Login  password:', password);
 
   const [toggole, setToggole] = useState(true);
-
+  // viet ham chuyen sang man hình dang ky
+  
+  const logSign = () => {
+    navigation.navigate('DangKy');
+  }
+// Hàm đăng nhập
   const login = () => {
-    fetch('http://192.168.1.161:3001/apiUser/login', {
+    fetch('http://192.168.1.3:3001/apiUser/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,12 +58,13 @@ const Login = ({navigation}) => {
       })
       .catch(e => console.log(e));
   };
-
+// Return tổng
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == 'android' ? 'padding' : 'height'}
       style={{}}>
       <ScrollView>
+        {/* Phan anh */}
         <View
           style={{
             flexDirection: 'row',
@@ -69,7 +79,7 @@ const Login = ({navigation}) => {
           />
           <View style={{height: 1, width: 130, backgroundColor: '#BDBDBD'}} />
         </View>
-
+          {/* Phan chu tieu de */}
         <View style={{marginHorizontal: 20, marginTop: 20}}>
           <Text
             style={{
@@ -113,6 +123,7 @@ const Login = ({navigation}) => {
               toggole == true ? setToggole(false) : setToggole(true)
             }
           />
+          {/* Qurn mat khau */}
           <Text
             style={{
               fontFamily: 'NSSBold',
@@ -122,6 +133,7 @@ const Login = ({navigation}) => {
             }}>
             Quên mật khẩu
           </Text>
+          {/* Nut dang nhap */}
           <TouchableOpacity
             onPress={login}
             style={{
@@ -137,6 +149,8 @@ const Login = ({navigation}) => {
               Đăng nhập
             </Text>
           </TouchableOpacity>
+          {/* Dang ky */}
+          <Pressable onPress={logSign}>
           <Text
             style={{
               color: '#242424',
@@ -147,6 +161,8 @@ const Login = ({navigation}) => {
             }}>
             Đăng ký
           </Text>
+          </Pressable>
+          
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
