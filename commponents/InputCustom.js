@@ -43,7 +43,7 @@ const InputCustom = ({
           }}>
           <TextInput
             onChangeText={onChangeText}
-            style={[{flex: 1}, style]}
+            style={[{flex: 1,fontFamily:'NSSBold'}, style]}
             secureTextEntry={enTry}
             value={value}
           />

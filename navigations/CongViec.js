@@ -157,9 +157,10 @@ const CongViec = ({navigation}) => {
           right: 20,
           borderRadius: 8,
           alignItems: 'center',
+          position: 'absolute'
         }}>
         <Image
-          style={{width: 15, height: 15, position: 'absolute'}}
+          style={{width: 15, height: 15}}
           source={require('../assets/image/plus.png')}
         />
       </TouchableOpacity>
