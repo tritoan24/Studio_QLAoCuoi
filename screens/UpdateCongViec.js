@@ -16,17 +16,17 @@ import React, {useEffect, useState} from 'react';
 import CustomHeader from '../commponents/CustomHeader';
 import InputCustom from '../commponents/InputCustom';
 import {Dropdown} from 'react-native-element-dropdown';
-import {apiGetNhanVien, apiPostCongViec} from '../config/UriAPi';
-import {CallApiCv} from '../navigations/CongViec';
+import {apiGetNhanVien, apiPutCongViec} from '../config/UriAPi';
 
-
-const CreateCongViec = ({navigation}) => {
+const UpdateCongViec = ({navigation, route}) => {
   const [dataNhanVien, setDataNhanVien] = useState([]);
-  const [nameNv, setNameNv] = useState('');
-  const [name, setName] = useState('');
-  const [stdate, setStdate] = useState('');
-  const [endate, setEndate] = useState('');
-  const [discriptions, setDiscriptions] = useState('');
+  const [nameNv, setNameNv] = useState(route.params.nameNv);
+  const [name, setName] = useState(route.params.name);
+  const [stdate, setStdate] = useState(route.params.stdate);
+  const [endate, setEndate] = useState(route.params.endate);
+  const [discriptions, setDiscriptions] = useState(route.params.discriptions);
+
+  console.log('UpdateCongViec  dataNhanVien:', route.params._id);
 
   const CallApiUser = async () => {
     try {
@@ -37,13 +37,14 @@ const CreateCongViec = ({navigation}) => {
       console.log('CallApiUser  error:', error);
     }
   };
+
   useEffect(() => {
     CallApiUser();
   }, []);
 
-  const CreateJob = () => {
-    fetch(apiPostCongViec, {
-      method: 'POST',
+  const UpdateJob = () => {
+    fetch(apiPutCongViec + route.params._id, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -52,13 +53,12 @@ const CreateCongViec = ({navigation}) => {
         stdate: stdate,
         endate: endate,
         nameNv: nameNv,
-        status: 0,
         discriptions: discriptions,
       }),
     })
       .then(res => {
         if (res.status == 200) {
-          ToastAndroid.show('Thêm thành công', ToastAndroid.SHORT);
+          ToastAndroid.show('Sửa thành công', ToastAndroid.SHORT);
           navigation.goBack();
         }
       })
@@ -85,8 +85,8 @@ const CreateCongViec = ({navigation}) => {
         contentContainerStyle={{flexGrow: 1}}
         keyboardShouldPersistTaps="handled">
         <CustomHeader
-          title={'Thêm công việc cho studio'}
-          messenger={'Xin mời thêm công việc cho studio'}
+          title={'Sửa công việc cho studio'}
+          messenger={'Xin mời sửa công việc cho studio'}
         />
         <Text
           style={{
@@ -113,14 +113,17 @@ const CreateCongViec = ({navigation}) => {
           <InputCustom
             title={'Tên công việc'}
             onChangeText={txt => setName(txt)}
+            value={name}
           />
           <InputCustom
             title={'Ngày bắt đầu'}
             onChangeText={txt => setStdate(txt)}
+            value={stdate}
           />
           <InputCustom
             title={'Ngày kết thúc'}
             onChangeText={txt => setEndate(txt)}
+            value={endate}
           />
           {/* <InputCustom title={'Tên nhân viên'} /> */}
           <Text
@@ -144,17 +147,18 @@ const CreateCongViec = ({navigation}) => {
             }}
             data={dataNhanVien}
             labelField="hoTen"
-            placeholder=""
+            placeholder={nameNv}
             value={''}
             onChange={item => setNameNv(item.hoTen)}
           />
           <InputCustom
             title={'Mô tả công việc'}
             onChangeText={txt => setDiscriptions(txt)}
+            value={discriptions}
           />
         </View>
         <TouchableOpacity
-          onPress={CreateJob}
+          onPress={UpdateJob}
           style={{
             backgroundColor: '#242424',
             height: 40,
@@ -166,7 +170,7 @@ const CreateCongViec = ({navigation}) => {
             height: 50,
           }}>
           <Text style={{color: 'white', fontFamily: 'NSSBold'}}>
-            Thêm công việc
+            Sửa công việc
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -174,6 +178,6 @@ const CreateCongViec = ({navigation}) => {
   );
 };
 
-export default CreateCongViec;
+export default UpdateCongViec;
 
 const styles = StyleSheet.create({});
