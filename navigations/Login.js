@@ -15,6 +15,9 @@ import React, {useState} from 'react';
 import InputCustom from '../commponents/InputCustom';
 import { useNavigation } from '@react-navigation/native';
 
+import { apiLogin } from '../config/UriAPi';
+
+
 const Login = ({navigation}) => {
   // const navigation = useNavigation();
 
@@ -32,7 +35,7 @@ const Login = ({navigation}) => {
 // Hàm đăng nhập
   const login = () => {
 
-    fetch('http://192.168.1.3:3001/apiUser/login', {
+    fetch(apiLogin, {
 
       method: 'POST',
       headers: {

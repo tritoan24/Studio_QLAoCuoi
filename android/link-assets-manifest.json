@@ -16,6 +16,10 @@
     {
       "path": "assets/fonts/NSSBold.ttf",
       "sha1": "0ec94b38226fe45cb85bad4cb5f884512bae6eb7"
+    },
+    {
+      "path": "assets/fonts/TNBold.ttf",
+      "sha1": "8bf72a17c89ecfb65fa3d1c741d28a8c9f1fabfa"
     }
   ]
 }
