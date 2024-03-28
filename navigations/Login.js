@@ -31,7 +31,9 @@ const Login = ({navigation}) => {
   }
 // Hàm đăng nhập
   const login = () => {
+
     fetch('http://192.168.1.3:3001/apiUser/login', {
+
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
