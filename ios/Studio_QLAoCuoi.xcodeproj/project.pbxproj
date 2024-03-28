@@ -18,6 +18,7 @@
 		79ADCB35D7EA483F8C2A3396 /* MRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F99ABE3C3E684E1F90B438E6 /* MRegular.ttf */; };
 		A0733A24D7754473832C635D /* NSRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D103A8EACE64AD2B5C7E01C /* NSRegular.ttf */; };
 		BB66C0839088428BAC414760 /* NSSBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E18E9387B7C436AA31F92B2 /* NSSBold.ttf */; };
+		D31238E2A68242E1B90FD9FE /* TNBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C05980013244711B0DCBA74 /* TNBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		F99ABE3C3E684E1F90B438E6 /* MRegular.ttf */ = {isa = PBXFileReference; name = "MRegular.ttf"; path = "../assets/fonts/MRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		6D103A8EACE64AD2B5C7E01C /* NSRegular.ttf */ = {isa = PBXFileReference; name = "NSRegular.ttf"; path = "../assets/fonts/NSRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		4E18E9387B7C436AA31F92B2 /* NSSBold.ttf */ = {isa = PBXFileReference; name = "NSSBold.ttf"; path = "../assets/fonts/NSSBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6C05980013244711B0DCBA74 /* TNBold.ttf */ = {isa = PBXFileReference; name = "TNBold.ttf"; path = "../assets/fonts/TNBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				F99ABE3C3E684E1F90B438E6 /* MRegular.ttf */,
 				6D103A8EACE64AD2B5C7E01C /* NSRegular.ttf */,
 				4E18E9387B7C436AA31F92B2 /* NSSBold.ttf */,
+				6C05980013244711B0DCBA74 /* TNBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				79ADCB35D7EA483F8C2A3396 /* MRegular.ttf in Resources */,
 				A0733A24D7754473832C635D /* NSRegular.ttf in Resources */,
 				BB66C0839088428BAC414760 /* NSSBold.ttf in Resources */,
+				D31238E2A68242E1B90FD9FE /* TNBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
