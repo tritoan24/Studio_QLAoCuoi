@@ -24,6 +24,7 @@ const Login = ({navigation}) => {
 
   const login = () => {
     fetch(apiLogin, {
+
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
