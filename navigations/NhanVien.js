@@ -34,7 +34,7 @@ const NhanVien = ({ navigation }) => {
       // Thực hiện xa thải ở đây
     }
     setConfirmVisible(false);
-  }
+  };
 
 
   const handleEditEmployee = () => {
@@ -42,7 +42,7 @@ const NhanVien = ({ navigation }) => {
     setModalVisible(false);
   }
   const getDs = () => {
-    fetch('http://192.168.0.101:3001/apiUser/listUser', {
+    fetch('http://192.168.0.104:3001/apiUser/listUser', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -138,7 +138,6 @@ const NhanVien = ({ navigation }) => {
                   borderRadius: 20,
                   justifyContent: 'center',
                   alignItems: 'center',
-                  elevation: 10
                 }}
               />
             )}
@@ -245,7 +244,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
-    elevation: 10
   },
   loadingIndicator: {
     height:'20%',

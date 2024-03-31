@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import InputCustom from '../InputCustom';
 import CustomButton from '../CustomButton';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
@@ -19,6 +19,10 @@ const AddNhanVienCt = ({ navigation, route }) => {
     const defaultImageSource = source= {uri: 'https://i.pinimg.com/564x/ad/57/b1/ad57b11e313616c7980afaa6b9cc6990.jpg'}
     const [date, setDate] = useState(new Date());
 
+    useEffect(() => {
+        console.log(imageUri)
+    }, []);
+
     const DangKi = async () => {
         let resizedImageUri = imageUri;
         if (imageUri) {
@@ -27,7 +31,7 @@ const AddNhanVienCt = ({ navigation, route }) => {
                     imageUri,
                     800, // maxWidth
                     600, // maxHeight
-                    'JPEG', // compressFormat
+                    'JPG', // compressFormat
                     80, // quality
                     0, // rotation
                 );
