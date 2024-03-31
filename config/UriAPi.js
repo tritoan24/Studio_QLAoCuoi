@@ -9,3 +9,5 @@ export const apiGetNhanVien = `http://${address}:3001/apiUser/listUser2`;
 export const apiGetDichVu = `http://${address}:3001/apiService/`;
 export const apiGetListNhanVien = `http://${address}:3001/apiUser/listUser`;
 export const apiPostDichVu = `http://${address}:3001/apiService/`;
+export const apiUploadFile = `http://${address}:3001/apiUser/update-picture`;
+export const apiAddUser = `http://${address}:3001/apiUser/addUser`;

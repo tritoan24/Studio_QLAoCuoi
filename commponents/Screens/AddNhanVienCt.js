@@ -4,6 +4,7 @@ import InputCustom from '../InputCustom';
 import CustomButton from '../CustomButton';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { apiAddUser, apiUploadFile } from '../../config/UriAPi';
 
 
 const AddNhanVienCt = ({ navigation, route }) => {
@@ -34,8 +35,9 @@ const AddNhanVienCt = ({ navigation, route }) => {
                 type: 'image/jpeg',
                 name: 'image.jpg',
             });
+            
     
-            fetch('http://192.168.0.104:3001/apiUser/update-picture', {
+            fetch(apiUploadFile, {
                 method: 'PUT',
                 body: formData,
                 headers: {
@@ -74,8 +76,8 @@ const AddNhanVienCt = ({ navigation, route }) => {
           try {
             const newImageUrl = await uploadImage(imageUri);
             console.log('Image đã được cập nhật:', newImageUrl);
-    
-            fetch('http://192.168.0.104:3001/apiUser/addUser', {
+            
+            fetch(apiAddUser, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

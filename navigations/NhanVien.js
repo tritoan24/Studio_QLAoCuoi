@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import CustomButton from '../commponents/CustomButton';
 import moment from 'moment';
 import { ActivityIndicator } from 'react-native';
+import { apiGetListNhanVien } from '../config/UriAPi';
 
 
 
@@ -41,8 +42,9 @@ const NhanVien = ({ navigation }) => {
     navigation.navigate('EditEmployee', { employee: selectedEmployee });
     setModalVisible(false);
   }
+  
   const getDs = () => {
-    fetch('http://192.168.0.104:3001/apiUser/listUser', {
+    fetch(apiGetListNhanVien, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
