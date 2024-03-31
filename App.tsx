@@ -13,7 +13,7 @@ import UpdateCongViec from './screens/UpdateCongViec';
 import AddNhanVien from './commponents/Screens/AddNhanVien';
 import AddNhanVienCt from './commponents/Screens/AddNhanVienCt';
 import EditNhanVien from './commponents/Screens/EditNhanVien';
-import ImagePickerComponent from './commponents/ImagePickerComponent';
+import ChiTietService from './screens/ChiTietService';
 
 
 const Stack = createNativeStackNavigator();
@@ -24,8 +24,7 @@ const App = () => {
     <NavigationContainer independent={true}>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
-        initialRouteName="Main1">
-        <Stack.Screen name="Main1" component={ImagePickerComponent} />
+        initialRouteName="Main">
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Main" component={MainNavigation} />
@@ -35,6 +34,8 @@ const App = () => {
         <Stack.Screen name="TaoTK" component={AddNhanVien} />
         <Stack.Screen name="AddContunie" component={AddNhanVienCt} />
         <Stack.Screen name="EditEmployee" component={EditNhanVien} />
+        <Stack.Screen name="Detail" component={ChiTietService} />
+
 
       </Stack.Navigator>
     </NavigationContainer>
