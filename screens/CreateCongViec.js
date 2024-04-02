@@ -18,7 +18,7 @@ import InputCustom from '../commponents/InputCustom';
 import {Dropdown} from 'react-native-element-dropdown';
 import {apiGetNhanVien, apiPostCongViec} from '../config/UriAPi';
 import {CallApiCv} from '../navigations/CongViec';
-
+import DatePicker from 'react-native-date-picker';
 
 const CreateCongViec = ({navigation}) => {
   const [dataNhanVien, setDataNhanVien] = useState([]);
@@ -27,6 +27,8 @@ const CreateCongViec = ({navigation}) => {
   const [stdate, setStdate] = useState('');
   const [endate, setEndate] = useState('');
   const [discriptions, setDiscriptions] = useState('');
+  const [showHideStart, setShowHideStart] = useState(false);
+  const [showHideEnd, setShowHideEnd] = useState(false);
 
   const CallApiUser = async () => {
     try {
@@ -114,14 +116,23 @@ const CreateCongViec = ({navigation}) => {
             title={'Tên công việc'}
             onChangeText={txt => setName(txt)}
           />
-          <InputCustom
-            title={'Ngày bắt đầu'}
-            onChangeText={txt => setStdate(txt)}
-          />
-          <InputCustom
-            title={'Ngày kết thúc'}
-            onChangeText={txt => setEndate(txt)}
-          />
+          <TouchableOpacity onPress={() => setShowHideStart(true)}>
+            <InputCustom
+              title={'Ngày bắt đầu'}
+              onChangeText={txt => setStdate(txt)}
+              edittable={false}
+              value={stdate}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setShowHideEnd(true)}>
+            <InputCustom
+              title={'Ngày kết thúc'}
+              onChangeText={txt => setEndate(txt)}
+              edittable={false}
+              value={endate}
+            />
+          </TouchableOpacity>
+
           {/* <InputCustom title={'Tên nhân viên'} /> */}
           <Text
             style={{
@@ -169,6 +180,40 @@ const CreateCongViec = ({navigation}) => {
             Thêm công việc
           </Text>
         </TouchableOpacity>
+        <DatePicker
+          modal
+          mode={'date'}
+          title={'Mời chọn ngày bắt đầu'}
+          locale="vi-VN"
+          open={showHideStart}
+          date={new Date()}
+          onConfirm={newDate => {
+            setStdate(
+              `${newDate.getDate()}/${
+                newDate.getMonth() + 1
+              }/${newDate.getFullYear()}`,
+            );
+            setShowHideStart(false);
+          }}
+          onCancel={() => setShowHideStart(false)}
+        />
+        <DatePicker
+          modal
+          mode={'date'}
+          title={'Mời chọn ngày kết thúc'}
+          open={showHideEnd}
+          locale="vi-VN"
+          date={new Date()}
+          onConfirm={newDate => {
+            setEndate(
+              `${newDate.getDate()}/${
+                newDate.getMonth() + 1
+              }/${newDate.getFullYear()}`,
+            );
+            setShowHideEnd(false);
+          }}
+          onCancel={() => setShowHideEnd(false)}
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   );

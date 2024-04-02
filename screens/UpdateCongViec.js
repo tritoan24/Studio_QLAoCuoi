@@ -17,6 +17,7 @@ import CustomHeader from '../commponents/CustomHeader';
 import InputCustom from '../commponents/InputCustom';
 import {Dropdown} from 'react-native-element-dropdown';
 import {apiGetNhanVien, apiPutCongViec} from '../config/UriAPi';
+import DatePicker from 'react-native-date-picker';
 
 const UpdateCongViec = ({navigation, route}) => {
   const [dataNhanVien, setDataNhanVien] = useState([]);
@@ -25,6 +26,8 @@ const UpdateCongViec = ({navigation, route}) => {
   const [stdate, setStdate] = useState(route.params.stdate);
   const [endate, setEndate] = useState(route.params.endate);
   const [discriptions, setDiscriptions] = useState(route.params.discriptions);
+  const [showHideEnd, setShowHideEnd] = useState('');
+  const [showHideStart, setShowHideStart] = useState('');
 
   console.log('UpdateCongViec  dataNhanVien:', route.params._id);
 
@@ -115,16 +118,23 @@ const UpdateCongViec = ({navigation, route}) => {
             onChangeText={txt => setName(txt)}
             value={name}
           />
-          <InputCustom
-            title={'Ngày bắt đầu'}
-            onChangeText={txt => setStdate(txt)}
-            value={stdate}
-          />
-          <InputCustom
-            title={'Ngày kết thúc'}
-            onChangeText={txt => setEndate(txt)}
-            value={endate}
-          />
+          <TouchableOpacity onPress={() => setShowHideStart(true)}>
+            <InputCustom
+              title={'Ngày bắt đầu'}
+              onChangeText={txt => setStdate(txt)}
+              value={stdate}
+              edittable={false}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setShowHideEnd(true)}>
+            <InputCustom
+              title={'Ngày kết thúc'}
+              onChangeText={txt => setEndate(txt)}
+              value={endate}
+              edittable={false}
+            />
+          </TouchableOpacity>
+
           {/* <InputCustom title={'Tên nhân viên'} /> */}
           <Text
             style={{
@@ -173,6 +183,40 @@ const UpdateCongViec = ({navigation, route}) => {
             Sửa công việc
           </Text>
         </TouchableOpacity>
+        <DatePicker
+          modal
+          mode={'date'}
+          title={'Mời chọn ngày bắt đầu'}
+          locale="vi-VN"
+          open={showHideStart}
+          date={new Date()}
+          onConfirm={newDate => {
+            setStdate(
+              `${newDate.getDate()}/${
+                newDate.getMonth() + 1
+              }/${newDate.getFullYear()}`,
+            );
+            setShowHideStart(false);
+          }}
+          onCancel={() => setShowHideStart(false)}
+        />
+        <DatePicker
+          modal
+          mode={'date'}
+          title={'Mời chọn ngày kết thúc'}
+          open={showHideEnd}
+          locale="vi-VN"
+          date={new Date()}
+          onConfirm={newDate => {
+            setEndate(
+              `${newDate.getDate()}/${
+                newDate.getMonth() + 1
+              }/${newDate.getFullYear()}`,
+            );
+            setShowHideEnd(false);
+          }}
+          onCancel={() => setShowHideEnd(false)}
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   );

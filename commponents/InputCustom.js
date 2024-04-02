@@ -16,7 +16,9 @@ const InputCustom = ({
   icon,
   onChangeToggle,
   enTry,
-  value
+  value,
+  onFocus,
+  edittable
 }) => {
   return (
     <SafeAreaView style={{marginHorizontal: 15, marginVertical: 15}}>
@@ -46,6 +48,8 @@ const InputCustom = ({
             style={[{flex: 1,fontFamily:'NSSBold'}, style]}
             secureTextEntry={enTry}
             value={value}
+            onFocus={onFocus}
+            editable = {edittable}
           />
         </View>
       ) : (
@@ -63,6 +67,7 @@ const InputCustom = ({
             onChangeText={onChangeText}
             style={[{flex: 1}, style]}
             secureTextEntry={enTry}
+            onFocus={onFocus}
           />
 
           {

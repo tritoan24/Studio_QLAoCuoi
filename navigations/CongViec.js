@@ -13,15 +13,65 @@ import {
 import React, {useEffect, useRef, useState} from 'react';
 import InputSearch from '../commponents/InputSearch';
 import CustomHeader from '../commponents/CustomHeader';
-import {apiDeleteCongViec, apiGetCongViec} from '../config/UriAPi';
+import {
+  apiDeleteCongViec,
+  apiGetCongViec,
+  apiPutCongViec,
+} from '../config/UriAPi';
 
 const CongViec = ({navigation}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalVisibleCT, setIsModalVisibleCT] = useState(false);
   const [id, setId] = useState('');
   const [item, setItem] = useState('');
-  console.log('CongViec  item:', item);
-  console.log('CongViec  id:', id);
+  // console.log('CongViec  item:', item);
+  // console.log('CongViec  id:', id);
+  // const [itemStatus, setItemStatus] = useState('');
+  // console.log(itemStatus);
+  const UpdateStatus = itemStatus => {
+    if (itemStatus.status == 1) {
+      ToastAndroid.show('Công việc đã hoàn thành', ToastAndroid.SHORT);
+    } else {
+      Alert.alert(
+        'Thông báo !',
+        'Bạn có chắc chắn hoàn thành công việc không ?',
+        [
+          {
+            text: 'Không',
+          },
+          {
+            text: 'Có',
+            onPress: () => {
+              fetch(apiPutCongViec + itemStatus._id, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  name: itemStatus.name,
+                  stdate: itemStatus.stdate,
+                  endate: itemStatus.endate,
+                  nameNv: itemStatus.nameNv,
+                  status: 0,
+                  discriptions: itemStatus.discriptions,
+                }),
+              })
+                .then(res => {
+                  if (res.status == 200) {
+                    ToastAndroid.show(
+                      'Update status successfully',
+                      ToastAndroid.SHORT,
+                    );
+                    CallApiCv();
+                  }
+                })
+                .catch(e => console.log(e));
+            },
+          },
+        ],
+      );
+    }
+  };
 
   const PostItemCv = ({item, index}) => {
     return (
@@ -86,17 +136,35 @@ const CongViec = ({navigation}) => {
             {item.nameNv}
           </Text>
         </View>
-        <View style={{flexDirection: 'row', bottom: 2}}>
-          <Text style={{color: '#242424', fontFamily: 'NSSBold'}}>
-            Trạng thái:{' '}
-          </Text>
-          <Text
-            style={[
-              {fontFamily: 'NSSBold'},
-              item.status == 1 ? {color: '#30E849'} : {color: '#E8B730'},
-            ]}>
-            {item.status == 1 ? 'Hoàn thành' : 'Chưa hoàn thành'}
-          </Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            bottom: 2,
+            justifyContent: 'space-between',
+          }}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{color: '#242424', fontFamily: 'NSSBold'}}>
+              Trạng thái:{' '}
+            </Text>
+            <Text
+              style={[
+                {fontFamily: 'NSSBold'},
+                item.status == 1 ? {color: '#30E849'} : {color: '#E8B730'},
+              ]}>
+              {item.status == 1 ? 'Hoàn thành' : 'Chưa hoàn thành'}
+            </Text>
+          </View>
+
+          <TouchableOpacity onPress={() => UpdateStatus(item)}>
+            <Image
+              style={[{width: 20, height: 20}]}
+              source={
+                item.status === 0
+                  ? require('../assets/image/checkfalse.png')
+                  : require('../assets/image/checktrue.png')
+              }
+            />
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -157,7 +225,7 @@ const CongViec = ({navigation}) => {
           right: 20,
           borderRadius: 8,
           alignItems: 'center',
-          position: 'absolute'
+          position: 'absolute',
         }}>
         <Image
           style={{width: 15, height: 15}}
@@ -251,15 +319,18 @@ const CongViec = ({navigation}) => {
                   setIsModalVisible(false);
                   navigation.navigate('UpdateCongViec', item);
                 }}
-                style={{
-                  backgroundColor: '#242424',
-                  height: 50,
-                  borderRadius: 8,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 280,
-                  marginBottom: 10,
-                }}>
+                style={[
+                  {
+                    backgroundColor: '#242424',
+                    height: 50,
+                    borderRadius: 8,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 280,
+                    marginBottom: 10,
+                  },
+                  item.status == 1 ? {display: 'none'} : null,
+                ]}>
                 <Text style={{color: 'white', fontFamily: 'NSSBold'}}>Sửa</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -350,7 +421,7 @@ const CongViec = ({navigation}) => {
                 height: 1.75,
                 width: '95%',
                 backgroundColor: '#DBDBDB',
-                alignSelf:'center'
+                alignSelf: 'center',
               }}
             />
 
